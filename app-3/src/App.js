@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import InputBoi from "./components/InputBoi";
+import ListBoi from "./components/ListBoi";
 
 function App() {
+  const [string, setString] = useState("");
+  const [data, setData] = useState([
+    "btc",
+    "eth",
+    "xmr",
+    "doge",
+    "ltc",
+    "shib",
+  ]);
+
+  const handleFilter = (e) => {
+    setString(e);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <InputBoi onChange={(e) => handleFilter(e.target.value)} />
+      <ListBoi string={string} data={data} />
     </div>
   );
 }
